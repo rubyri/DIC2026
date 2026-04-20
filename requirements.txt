@@ -1,0 +1,4 @@
+mrjob==0.7.4
+PyYAML==6.0.3
+setuptools==68.0.0
+ujson==5.12.0
