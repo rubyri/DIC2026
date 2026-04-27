@@ -17,6 +17,9 @@ from typing import Iterable, Iterator, Tuple
 from mrjob.job import MRJob
 from mrjob.protocol import RawValueProtocol
 from mrjob.step import MRStep
+import os
+_HERE = os.path.dirname(os.path.abspath(__file__))
+
 
 from utils import load_stopwords, preprocess_text
 
@@ -32,7 +35,10 @@ class MRChiSquare(MRJob):
     The output is the final output.txt produced by the last reducer.
     """
     OUTPUT_PROTOCOL = RawValueProtocol
-    FILES = ["utils.py", "../data/stopwords.txt"]
+    FILES = [
+        os.path.join(_HERE, "utils.py"),
+        os.path.normpath(os.path.join(_HERE, "..", "data", "stopwords.txt")),
+    ]
 
     # Steps                                          
     def steps(self) -> list[MRStep]:
